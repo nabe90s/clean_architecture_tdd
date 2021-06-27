@@ -26,8 +26,6 @@ dependencies:
   # Local cache
   shared_preferences: ^0.5.3+4
 
-  _fe_analyzer_shared: ^22.0.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
