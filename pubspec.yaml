@@ -24,9 +24,10 @@ dependencies:
   dio: ^4.0.0
   retrofit: ^2.0.0
   # Local cache
-  shared_preferences: ^0.5.3+4
+  shared_preferences: ^2.0.6
 
   connectivity_plus: ^1.0.4
+  mocktail: ^0.1.4
 
 dev_dependencies:
   flutter_test:
