@@ -40,17 +40,17 @@ void main() {
       verify(mockSharedPreferences.getString('CACHED_NUMBER_TRIVIA'));
       expect(result, tNumberTriviaModel);
     });
-    // test(
-    //     'should return NumberTrivia from SharedPreferences when there is not a cache',
-    //     () async {
-    //   // arrange
-    //   when(mockSharedPreferences.getString('CACHED_NUMBER_TRIVIA'))
-    //       .thenAnswer((_) => '');
-    //   // action
-    //   final call = dataSource.getLastNumberTrivia;
-    //   // assert
-    //   expect(()=> call(), throwsA(TypeMatcher<CacheException>()));
-    // });
+    test(
+        'should return NumberTrivia from SharedPreferences when there is not a cache',
+        () async {
+      // arrange
+      when(mockSharedPreferences.getString('CACHED_NUMBER_TRIVIA'))
+          .thenAnswer((_) => null);
+      // action
+      final call = dataSource.getLastNumberTrivia;
+      // assert
+      expect(()=> call(), throwsA(TypeMatcher<CacheException>()));
+    });
   });
 
   group('cacheNumberTrivia', () {

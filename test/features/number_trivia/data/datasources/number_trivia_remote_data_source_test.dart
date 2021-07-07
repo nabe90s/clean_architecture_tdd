@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:clean_architecture_tdd/core/error/exception.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart';
 import 'package:clean_architecture_tdd/features/number_trivia/data/models/number_trivia_model.dart';
 import 'package:http/http.dart' as http;
@@ -48,5 +49,18 @@ void main() {
       // assert
       expect(result, equals(tNumberTriviaModel));
     });
+    test(
+      'should throw a ServerException when the response code is 404 or other',
+          () async {
+        // arrange
+        when(mockClient.get(uri, headers: tHeader)).thenAnswer(
+              (_) async => http.Response('Something went wrong', 404),
+        );
+        // act
+        final call = dataSource.getConcreteNumberTrivia;
+        // assert
+        expect(() => call(tNumber), throwsA(TypeMatcher<ServerException>()));
+      },
+    );
   });
 }
